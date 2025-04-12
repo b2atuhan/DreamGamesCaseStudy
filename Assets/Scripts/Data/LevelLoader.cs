@@ -27,10 +27,7 @@ public class LevelLoader : MonoBehaviour
         {
             bgImage.sprite = loadedSprite;
         }
-        else
-        {
-            Debug.LogError($"❌ Background sprite for level {currentLevelNumber} not found!");
-        }
+       
 
         LoadLevel(currentLevelNumber);
         AdjustCameraToGrid();
@@ -50,14 +47,7 @@ public class LevelLoader : MonoBehaviour
     {
         TextAsset levelJson = Resources.Load<TextAsset>($"Levels/Level {levelNumber}");
 
-        if (levelJson == null)
-        {
-            Debug.LogError($"Level {levelNumber} JSON not found!");
-            return;
-        }
-
         currentLevelData = JsonUtility.FromJson<LevelData>(levelJson.text);
-        Debug.Log($"✅ Loaded level {levelNumber} with {currentLevelData.grid.Count} items.");
 
         GridUtility.ClearAll();
 
@@ -117,11 +107,7 @@ public class LevelLoader : MonoBehaviour
             return null;
 
         GameObject prefab = Resources.Load<GameObject>($"Prefabs/{prefabName}");
-        if (prefab == null)
-        {
-            Debug.LogError($"❌ Prefab not found for code: {code} → {prefabName}");
-            return null;
-        }
+      
 
         Vector2 worldPos = new Vector2(gridPos.x, gridPos.y);
         GameObject obj = Instantiate(prefab, worldPos, Quaternion.identity, gridParent);

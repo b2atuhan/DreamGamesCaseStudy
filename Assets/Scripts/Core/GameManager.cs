@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
         
         InputBlocker.IsInputEnabled = false; // 🔒 block grid taps
 
-        Debug.Log("Level Won!");
 
         Vector3 centerScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(centerScreen);
@@ -79,7 +78,6 @@ public class GameManager : MonoBehaviour
 
     private void LoseLevel()
     {
-        Debug.Log("Level Lost!");
         InputBlocker.IsInputEnabled = false;
 
         failPopup.SetActive(true); // Show the popup

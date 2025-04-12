@@ -20,34 +20,16 @@ public class Rocket : CubeItem
     [SerializeField] private GameObject flyingRocketPrefab;
     private bool isExploded = false;
 
-
-    private static int onMouseDownCount = 0;
-    private static int triggerComboCount = 0;
-    private static int blastCrossCount = 0;
-    private static int damageOrBlastCount = 0;
-    private static int hasAdjacentRocketCount = 0;
-    private static int explodeCount = 0;
-    private static int launchRocketPartsCount = 0;
-    private static int moveRocketPartCount = 0;
-    private static int createRocketTrailCount = 0;
-
     void OnMouseDown()
     {
-        onMouseDownCount++;
-        Debug.Log($"[OnMouseDown #{onMouseDownCount}] → Checking input");
-
         if (!InputBlocker.IsInputEnabled) return;
-
-        Debug.Log($"[OnMouseDown #{onMouseDownCount}] → Checking for adjacent rockets");
 
         if (HasAdjacentRocket())
         {
-            Debug.Log($"[OnMouseDown #{onMouseDownCount}] → Calling TriggerCombo");
             TriggerCombo();
         }
         else
         {
-            Debug.Log($"[OnMouseDown #{onMouseDownCount}] → Calling Explode");
             Explode();
         }
 
@@ -56,18 +38,12 @@ public class Rocket : CubeItem
 
     private void TriggerCombo()
     {
-        triggerComboCount++;
-        Debug.Log($"[TriggerCombo #{triggerComboCount}] → TriggerCombo called at: {GridPosition}");
-
         Vector2Int center = GridPosition;
         StartCoroutine(BlastCross(center));
     }
 
     private IEnumerator BlastCross(Vector2Int center)
     {
-        blastCrossCount++;
-        Debug.Log($"[BlastCross #{blastCrossCount}] → Starting combo blast at: {center}");
-
         int width = GridManager.width;
         int height = GridManager.height;
 
@@ -101,7 +77,6 @@ public class Rocket : CubeItem
         {
             if (GridUtility.IsInBounds(pos))
             {
-                Debug.Log($"[BlastCross #{blastCrossCount}] → Blasting at {pos}");
                 DamageOrBlast(pos);
                 yield return new WaitForSeconds(0.01f);
             }
@@ -109,7 +84,6 @@ public class Rocket : CubeItem
 
         yield return new WaitForSeconds(0.2f);
 
-        Debug.Log($"[BlastCross #{blastCrossCount}] → Final explosion at {center}");
         GridUtility.RemoveCube(center);
         Destroy(gameObject);
 
@@ -118,14 +92,10 @@ public class Rocket : CubeItem
 
     private void DamageOrBlast(Vector2Int pos)
     {
-        damageOrBlastCount++;
-        Debug.Log($"[DamageOrBlast #{damageOrBlastCount}] → Processing {pos}");
-
         CubeItem item = GridUtility.GetCubeAt(pos);
 
         if (item == null)
         {
-            Debug.LogWarning($"[DamageOrBlast #{damageOrBlastCount}] → No item at {pos}");
             return;
         }
 
@@ -146,9 +116,6 @@ public class Rocket : CubeItem
 
     private bool HasAdjacentRocket()
     {
-        hasAdjacentRocketCount++;
-        Debug.Log($"[HasAdjacentRocket #{hasAdjacentRocketCount}] → Checking around {transform.position}");
-
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
         foreach (Vector2 dir in directions)
@@ -164,31 +131,20 @@ public class Rocket : CubeItem
     }
 
     public void Explode()
-{
-    if (isExploded)
     {
-        Debug.Log($"[Explode] Rocket at {GridPosition} already exploded. Skipping.");
-        return;
+        if (isExploded) return;
+
+        isExploded = true;
+        StartCoroutine(LaunchRocketParts());
     }
 
-    isExploded = true;
-
-    explodeCount++;
-    Debug.Log($"[Explode #{explodeCount}] → Rocket Explode() called at: {GridPosition}");
-    StartCoroutine(LaunchRocketParts());
-}
-
-
     private void OnEnable()
-{
-    isExploded = false;
-}
+    {
+        isExploded = false;
+    }
 
     private IEnumerator LaunchRocketParts()
     {
-        launchRocketPartsCount++;
-        Debug.Log($"[LaunchRocketParts #{launchRocketPartsCount}] → Launching parts");
-
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null) sr.enabled = false;
 
@@ -215,9 +171,6 @@ public class Rocket : CubeItem
 
     private IEnumerator MoveRocketPart(Vector2Int dir, System.Action onComplete)
     {
-        moveRocketPartCount++;
-        Debug.Log($"[MoveRocketPart #{moveRocketPartCount}] → Moving in {dir}");
-
         Vector2Int currentPos = GridPosition;
         GameObject visualRocket = Instantiate(flyingRocketPrefab);
         visualRocket.transform.position = new Vector3(currentPos.x, currentPos.y, -1);
@@ -271,9 +224,6 @@ public class Rocket : CubeItem
 
     private void CreateRocketTrail(Vector2Int pos, Vector2Int direction)
     {
-        createRocketTrailCount++;
-        Debug.Log($"[CreateRocketTrail #{createRocketTrailCount}] → Creating trail at {pos}");
-
         Vector3 spawnPos = new Vector3(pos.x, pos.y, -1);
         Quaternion rotation = direction == Vector2Int.down ? Quaternion.Euler(0, 0, 0) :
                               direction == Vector2Int.up ? Quaternion.Euler(0, 0, 180) :

@@ -38,15 +38,10 @@ public class ObstacleDisplayUI : MonoBehaviour
 
     public void UpdateDisplay()
     {
-        Debug.Log("🔄 UpdateDisplay1 called...");
         if (container == null)
         {
             container = GameObject.Find("Container")?.GetComponent<RectTransform>();
-            if (container == null)
-            {
-                Debug.LogError("❌ Obstacle container not found in scene! Aborting UpdateDisplay.");
-                return;
-            }
+           
         }
 
         // Release all previous items
@@ -56,7 +51,6 @@ public class ObstacleDisplayUI : MonoBehaviour
         }
         activeItems.Clear();
 
-        Debug.Log("🔍 UpdateDisplay2 called...");
         List<int> obstacleCounts = ObstacleManager.Instance.GetObstacleCountsAsList();
         List<Sprite> obstacleSprites = new List<Sprite>();
         List<int> countsToShow = new List<int>();

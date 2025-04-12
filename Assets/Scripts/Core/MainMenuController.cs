@@ -18,10 +18,7 @@ public class MainMenuController : MonoBehaviour
             SceneChangeAnimation.AnimationVariant.MiddleBottom
         );
         levelButtonText = levelButtonTextGO.GetComponent<TextMeshProUGUI>();
-        if (levelButtonText == null)
-        {
-            Debug.LogError("❌ TMP component not found on levelButtonTextGO!");
-        }
+        
 
         int currentLevel = PlayerPrefs.GetInt("LastPlayedLevel", 1);
         Sprite loadedSprite = Resources.Load<Sprite>($"Art/Backgrounds/BG-{currentLevel}");
@@ -30,10 +27,7 @@ public class MainMenuController : MonoBehaviour
         {
             backgroundImage.sprite = loadedSprite;
         }
-        else
-        {
-            Debug.LogWarning($"⚠️ Background image or sprite for BG-{currentLevel} not found.");
-        }
+        
 
         levelButton.onClick.AddListener(OnLevelButtonClick);
     }

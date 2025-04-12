@@ -21,7 +21,6 @@ public class Cube : CubeItem
     {
         if (!InputBlocker.IsInputEnabled) return;
 
-        Debug.Log("🟥 Cube tapped");
         CubeManager.Instance.HandleCubeTap(this);
     }
 

@@ -1,0 +1,3 @@
+# Merhabalar
+
+Öncelikle oyunumu incelemeye zaman ayırdığınız için teşekkür ederim. Bu proje benim için oldukça faydalıydı, fazlasıyla yeni şey öğrendim. Dürüst olmak gerekirse daha önce unity ve C# ile bir deneyimim yoktu. Bu 10 günlük süreçte sıfırdan bir sürü yeni şey öğrenmem gerekti. Bulduğum hazır assetler çok güzel olmadığından, çoğunu yapay zeka ve photoshop üzerinden hazırladım, umarım güzel olmuşlardır. Sonuç olarak bu süreç benim için he zorlu hem de çok eğlenceliydi, bu günden sonra da oyun yazmaya devam etmeyi düşünüyorum, bu yüzden kararınız ne olursa olsun oyunum hakkında feedback verebilirseniz çok sevinirim, şimdiden teşekkür ederim.

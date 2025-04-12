@@ -14,7 +14,6 @@ public class InputHandler : MonoBehaviour
     {
         if (!CubeManager.Instance.PossibleMoveExists())
         {
-            Debug.Log("❌ No possible moves left");
             CubeManager.Instance.Shuffle();
         }
 
@@ -29,21 +28,17 @@ public class InputHandler : MonoBehaviour
 
                 if (clickedObject.CompareTag("ComboRocketPart"))
                 {
-                    Debug.Log("⚠️ Ignored click on ComboRocketPart");
                     return;
                 }
 
                 CubeItem cubeItem = clickedObject.GetComponent<CubeItem>();
 
-                if (cubeItem == null)
+                if (cubeItem != null)
                 {
-                    Debug.LogWarning($"⚠️ Clicked object '{clickedObject.name}' has no CubeItem component");
+                                        cubeItem.OnTapped();
+
                 }
-                else
-                {
-                    Debug.Log($"✅ Clicked on CubeItem: {cubeItem.name} ({cubeItem.GetType()})");
-                    cubeItem.OnTapped();
-                }
+                
             }
         }
     }

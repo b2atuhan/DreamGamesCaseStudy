@@ -28,18 +28,10 @@ public class SceneChangeAnimation : MonoBehaviour
 
     public void AnimateAndChangeScene(AnimationVariant aniType, Action onComplete = null)
     {
-        if (cloud == null)
-        {
-            Debug.LogError("❌ Cloud GameObject not assigned!");
-            return;
-        }
+       
 
         RectTransform cloudRect = cloud.GetComponent<RectTransform>();
-        if (cloudRect == null)
-        {
-            Debug.LogError("❌ No RectTransform on cloud!");
-            return;
-        }
+       
 
         float startY;
         Vector2 endPos;
@@ -81,7 +73,6 @@ public class SceneChangeAnimation : MonoBehaviour
                 break;
 
             default:
-                Debug.LogError("❌ Unknown animation type!");
                 return;
         }
 
@@ -89,7 +80,6 @@ public class SceneChangeAnimation : MonoBehaviour
             .SetEase(Ease.OutCubic)
             .OnComplete(() =>
             {
-                Debug.Log("✅ Animation finished.");
                 onComplete?.Invoke();
             });
     }
