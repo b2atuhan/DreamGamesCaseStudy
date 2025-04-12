@@ -23,25 +23,21 @@ public class LevelSetterWindow : EditorWindow
         if (GUILayout.Button("Set Level"))
         {
             PlayerPrefs.SetInt("LastPlayedLevel", levelNumber);
-            Debug.Log("Progress set to Level " + levelNumber);
         }
     }
     [MenuItem("Tools/Reset to Level 1")]
     public static void SetToLevel1()
     {
         PlayerPrefs.SetInt("LastPlayedLevel", 1);
-        Debug.Log("Progress reset to Level 1.");
     }
     [MenuItem("Tools/Reset to Level 5")]
     public static void SetToLevel5()
     {
         PlayerPrefs.SetInt("LastPlayedLevel", 5);
-        Debug.Log("Progress reset to Level 5.");
     }
     [MenuItem("Tools/Reset to Level 9")]
     public static void SetToLevel10()
     {
         PlayerPrefs.SetInt("LastPlayedLevel", 9);
-        Debug.Log("Progress reset to Level 9.");
     }
 }
