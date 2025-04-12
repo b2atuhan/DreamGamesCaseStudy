@@ -1,0 +1,14 @@
+{
+  "level_number": 4,
+  "grid_width": 6,
+  "grid_height": 8,
+  "move_count": 20,
+  "grid": [ "bo","g","b","y","r","bo",
+            "g","y","r","b","g","r",
+            "r","s","y","g","b","y",
+            "y","r","v","v","y","r",
+            "b","g","v","v","g","b",
+            "g","r","y","b","s","g",
+            "r","g","b","y","g","g",
+            "bo","y","r","b","g","bo" ]
+}
