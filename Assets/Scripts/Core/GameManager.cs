@@ -94,11 +94,17 @@ public class GameManager : MonoBehaviour
     }
     public void TryAgain()
     {
-        SceneManager.LoadScene("LevelScene");
+        SceneChangeAnimation.Instance.AnimateAndChangeScene(
+            SceneChangeAnimation.AnimationVariant.TopMiddle,
+            () => SceneManager.LoadScene("LevelScene")
+        );
     }
 
     public void ReturnToMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneChangeAnimation.Instance.AnimateAndChangeScene(
+            SceneChangeAnimation.AnimationVariant.TopMiddle,
+            () => SceneManager.LoadScene("MainScene")
+        );
     }
 }

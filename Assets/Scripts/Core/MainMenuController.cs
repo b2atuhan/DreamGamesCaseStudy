@@ -24,7 +24,7 @@ public class MainMenuController : MonoBehaviour
         }
 
         int currentLevel = PlayerPrefs.GetInt("LastPlayedLevel", 1);
-        Sprite loadedSprite = Resources.Load<Sprite>($"Sprites/BG-{currentLevel}");
+        Sprite loadedSprite = Resources.Load<Sprite>($"Art/Backgrounds/BG-{currentLevel}");
 
         if (backgroundImage != null && loadedSprite != null)
         {

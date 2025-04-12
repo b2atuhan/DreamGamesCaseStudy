@@ -22,7 +22,7 @@ public class LevelLoader : MonoBehaviour
     }
 
         currentLevelNumber = PlayerPrefs.GetInt("LastPlayedLevel", 1);
-        Sprite loadedSprite = Resources.Load<Sprite>($"Sprites/BG-{currentLevelNumber}");
+        Sprite loadedSprite = Resources.Load<Sprite>($"Art/Backgrounds/BG-{currentLevelNumber}");
         if (loadedSprite != null)
         {
             bgImage.sprite = loadedSprite;
